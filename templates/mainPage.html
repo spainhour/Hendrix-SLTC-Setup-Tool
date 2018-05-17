@@ -1,18 +1,25 @@
 <html>
 <head>
-  <h1>Fill out the information below to begin.</h1>
-  <meta charset='utf-8'/>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main_page.css') }}">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"><br><br>
+  <div id="header" style="background-image:url('static/css/sltc.jpg');">
+    <h1>Fill out the information below to begin.</h1>
+    <meta charset='utf-8'/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_page.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"><br><br>
+  </div>
 </head>
 <body>
-  <div id=information>
-    <form class=infoBoxes>
-      <input class=ibn type="text" placeholder="First name" />
-      <input class=ibn type="text" placeholder="Last name"  /> <br />
-      <input class=ib type="tel" placeholder="Phone number"  /> <br />
-      <input class=ib type="email" placeholder="Email" /> <br />
-      <input class=ib type="date"  /> <br />
+  <div id="information">
+    <form class=infoBoxes action = "{{ url_for('new_user') }}" method = "POST">
+      <input class=ibn type="text" name="firstname" placeholder="First name" />
+      <input class=ibn type="text" name="lastname" placeholder="Last name"  /> <br />
+      <input class=ibn type="tel" name="phone" placeholder="Phone number"  />
+      <input class=ibn type="email" name="email" placeholder="Email" /> <br />
+      <input class=ib type="text" name="event" placeholder="Name of event" /> <br />
+      Date of event <br />
+      <input class=ib type="date" name="date" /> <br />
+      Start time/End time <br />
+      <input class=ibn type="time" name="start_time" placebolder="Start time" />
+      <input class=ibn type="time" name="end_time" placeholder="End time"  /> <br />
       <select class=ib name="rooms">
         <option>Select a Room</option>
         <option value="Burrow">Burrow</option>
@@ -30,5 +37,8 @@
         <option value="Tech Cluster 5">Tech Cluster 5</option>
         <option value="Tech Cluster 6">Tech Cluster 6</option>
         <option value="Tech Cluster 7">Tech Cluster 7</option>
-      </select>
+      </select><br />
+      <textarea placeholder="Additional comments" name="comments" rows=4 cols=47 padding=3></textarea> <br />
+      <input type="submit" value="Submit" />
+    </form>
 </html>

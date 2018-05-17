@@ -1,19 +1,33 @@
+#header {
+  background-position: center;
+  background-image: url("static/css/sltc.jpg");
+  background-color: rgba(255,255,255,0.6);
+  font-stretch: expanded;
+  height: 275px;
+  background-blend-mode: color-dodge;
+}
+
+textarea {
+  border-radius: 4px;
+}
+
 h1 {
   margin-left: 20px;
   text-align: center;
+  padding-top: 120px
 }
 
 .infoBoxes {
+  padding: 10;
   margin-left: 20px;
   text-align: center;
 }
 
 .ib {
-
   padding: 3;
   margin: 5;
   border-radius: 4px;
-  width: 280;
+  width: 350;
   height: 35px;
 }
 
@@ -21,6 +35,6 @@ h1 {
   padding: 3;
   margin: 5;
   border-radius: 4px;
-  width: 133;
+  width: 168;
   height: 35px;
 }
