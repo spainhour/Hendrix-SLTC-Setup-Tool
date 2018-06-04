@@ -31,11 +31,18 @@ def new_user():
 @app.route('/setup')
 def setupPage(setupRoom):
     room = setupRoom
+
+    c = sqlite3.connect('furniture.db')
+    cur = c.cursor()
+    cur.execute("SELECT furniture FROM rooms WHERE name=" + "'" + room + "'")
+    furniture = cur.fetchall()
+
     if room == "Burrow":
         room = "The Burrow"
     if room == "East Lobby":
         room = "The East Lobby"
-    return render_template("setup.html", room=room)
+
+    return render_template("setup.html", room=room, furniture=furniture)
 
 if __name__ == '__main__':
     app.run(debug=True)

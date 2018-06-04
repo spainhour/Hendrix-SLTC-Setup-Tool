@@ -1,6 +1,30 @@
 #header {
   background-position: center;
   font-stretch: expanded;
-  height: 275px;
+  height: 125px;
   text-align: center;
+}
+
+#container {
+  display: flex;
+}
+
+#toolBox {
+  width: 250;
+  border-width:2px;
+  border-style:solid;
+  border-color:black;
+  padding:2;
+}
+
+#canvas {
+  height:500;
+  border-width:2px;
+  border-style:solid;
+  border-color:black;
+  flex-grow: 1;
+}
+
+#space {
+  width:4;
 }

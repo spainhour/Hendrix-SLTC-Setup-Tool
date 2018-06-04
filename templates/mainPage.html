@@ -10,17 +10,17 @@
 <body>
   <div id="information">
     <form class=infoBoxes action = "{{ url_for('new_user') }}" method = "POST">
-      <input class=ibn type="text" name="firstname" placeholder="First name" />
-      <input class=ibn type="text" name="lastname" placeholder="Last name"  /> <br />
-      <input class=ibn type="tel" name="phone" placeholder="Phone number"  />
-      <input class=ibn type="email" name="email" placeholder="Email" /> <br />
-      <input class=ib type="text" name="event" placeholder="Name of event" /> <br />
-      Date of event <br />
-      <input class=ib type="date" name="date" /> <br />
-      Start time/End time <br />
-      <input class=ibn type="time" name="start_time" placebolder="Start time" />
-      <input class=ibn type="time" name="end_time" placeholder="End time"  /> <br />
-      <select class=ib name="rooms">
+      <input class=ibn type="text" name="firstname" placeholder="First name" required="required" />
+      <input class=ibn type="text" name="lastname" placeholder="Last name" required="required" /> <br />
+      <input class=ibn type="tel" name="phone" placeholder="Phone number" required="required" />
+      <input class=ibn type="email" name="email" placeholder="Email" required="required" /> <br />
+      <input class=ib type="text" name="event" placeholder="Name of event" required="required" /> <br />
+      Date of event: <br />
+      <input class=ib type="date" name="date" required="required" /> <br />
+      Start time/End time: <br />
+      <input class=ibn type="time" name="start_time" placebolder="Start time" required="required" />
+      <input class=ibn type="time" name="end_time" placeholder="End time"  required="required" /> <br />
+      <select class=ib name="rooms" required="required">
         <option>Select a Room</option>
         <option value="Burrow">Burrow</option>
         <option value="Worsham">Worsham</option>

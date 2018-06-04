@@ -5,10 +5,21 @@
       <h1>Create your outline for {{ room }}.</h1>
     </div>
   </head>
-
-
   <body>
-
+    <div id="container">
+      <div id="toolBox">
+        <table>
+          {% for row in furniture %}
+          <tr>
+            <th> {{ row[0] }}</th>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div id="space">
+      </div>
+      <div id="canvas">
+      </div>
+    </div>
   </body>
-
 </html>
