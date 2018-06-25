@@ -7,6 +7,10 @@
   background-blend-mode: color-dodge;
 }
 
+#adminLogin {
+  padding: 5;
+}
+
 textarea {
   border-radius: 4px;
 }

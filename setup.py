@@ -8,6 +8,14 @@ roomsList = ['Burrow', 'Worsham', 'Worsham North', 'Worsham South', 'Campbell', 
 def mainPage():
     return render_template('mainPage.html')
 
+@app.route('/admin')
+def adminPage():
+    c = sqlite3.connect('users.db')
+    cur = c.cursor()
+    cur.execute("SELECT * FROM users")
+    users = cur.fetchall()
+    return render_template('adminPage.html', users=users)
+
 @app.route('/new_user', methods=['POST', 'GET'])
 def new_user():
     if request.method == 'POST':
@@ -26,23 +34,24 @@ def new_user():
         cur.execute("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?,?)", (str(firstname), str(lastname), str(phone), str(email), str(event), str(date), str(start), str(end), str(room), str(comments)))
         con.commit()
         con.close()
-        return setupPage(room)
+        return setupPage(room, event)
 
 @app.route('/setup')
-def setupPage(setupRoom):
+def setupPage(setupRoom, event):
     room = setupRoom
-
     c = sqlite3.connect('furniture.db')
     cur = c.cursor()
     cur.execute("SELECT furniture FROM rooms WHERE name=" + "'" + room + "'")
     furniture = cur.fetchall()
+    tables = []
+    chairs = []
+    other = []
 
     if room == "Burrow":
         room = "The Burrow"
     if room == "East Lobby":
         room = "The East Lobby"
-
-    return render_template("setup.html", room=room, furniture=furniture)
+    return render_template("setup.html", room=room, event=event, tables=tables, chairs=chairs, other=other)
 
 if __name__ == '__main__':
     app.run(debug=True)

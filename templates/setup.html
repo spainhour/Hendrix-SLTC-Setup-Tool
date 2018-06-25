@@ -2,19 +2,24 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/setup.css') }}">
   <head>
     <div id="header">
-      <h1>Create your outline for {{ room }}.</h1>
+      <h1>Create your outline of {{ room }} for {{ event }}.</h1>
     </div>
   </head>
   <body>
     <div id="container">
       <div id="toolBox">
-        <table>
-          {% for row in furniture %}
-          <tr>
-            <th> {{ row[0] }}</th>
-          </tr>
-          {% endfor %}
-        </table>
+        <h2 class="select">Select a category</h2>
+        <select class="select">
+          <option>Select a category</option>
+          <option value="tables">Tables</option>
+          <option values="chairs">Chairs</option>
+          <option value="other">Other</option>
+        </select>
+        <hr />
+        <h2 class="select" id="select_furniture">Select furniture</h2>
+        <select>
+          <option>Select furniture</option>
+        </select>
       </div>
       <div id="space">
       </div>

@@ -41,4 +41,15 @@
       <textarea placeholder="Additional comments" name="comments" rows=4 cols=47 padding=3></textarea> <br />
       <input type="submit" value="Submit" />
     </form>
+    <hr />
+    <div id="adminLogin">
+      <h3>Admin login</h3>
+      <form>
+        <input id="password" type="password" />
+        <input id="adminSubmit" type="submit" value="Submit" />
+      </form>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{{ url_for('static', filename='mainPage.js') }}"></script>
+</body>
 </html>

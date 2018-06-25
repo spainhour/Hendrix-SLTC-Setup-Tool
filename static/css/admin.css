@@ -5,11 +5,28 @@
   text-align: center;
 }
 
+#info {
+  display: hide;
+}
+
+#header_div {
+
+}
+
+#user_info_div {
+
+}
+
+#edit {
+  display: inline;
+}
+
 #container {
   display: flex;
 }
 
 #toolBox {
+  display: none;
   width: 250;
   border-width:2px;
   border-style:solid;
@@ -36,9 +53,4 @@
 
 #select_category {
   align-self: center;
-}
-
-#select_furniture {
-  align-self: center;
-  display: hide;
 }
