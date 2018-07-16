@@ -1,3 +1,18 @@
+.objects {
+  display: inline-grid;
+  position: absolute;
+  border: #DFBC6A 1px solid;
+  width: 50px;
+  height: 50px;
+  text-align:center;
+  cursor: move;
+}
+
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+}
+
 #header {
   background-position: center;
   font-stretch: expanded;

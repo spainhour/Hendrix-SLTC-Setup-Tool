@@ -12,7 +12,7 @@ def mainPage():
 def adminPage():
     c = sqlite3.connect('users.db')
     cur = c.cursor()
-    cur.execute("SELECT * FROM users")
+    cur.execute("SELECT DISTINCT * FROM users")
     users = cur.fetchall()
     return render_template('adminPage.html', users=users)
 
@@ -38,20 +38,38 @@ def new_user():
 
 @app.route('/setup')
 def setupPage(setupRoom, event):
+    tables = []
+    chairs = []
+    couches = []
+    other = []
     room = setupRoom
     c = sqlite3.connect('furniture.db')
+    c.row_factory = sqlite3.Row
     cur = c.cursor()
     cur.execute("SELECT furniture FROM rooms WHERE name=" + "'" + room + "'")
     furniture = cur.fetchall()
-    tables = []
-    chairs = []
-    other = []
+    for row in furniture:
+        for member in row:
+            newStr = ''.join(member)
+            for i in newStr.split(","):
+                if "table" in i:
+                    tables.append(i)
+                elif "chair" in i:
+                    chairs.append(i)
+                elif "couch" in i:
+                    couches.append(i)
+                else:
+                    other.append(i)
+    print(tables)
+    print(chairs)
+    print(couches)
+    print(other)
 
     if room == "Burrow":
         room = "The Burrow"
     if room == "East Lobby":
         room = "The East Lobby"
-    return render_template("setup.html", room=room, event=event, tables=tables, chairs=chairs, other=other)
+    return render_template("setup.html", room=room, event=event, tables=tables, chairs=chairs, couches=couches, other=other)
 
 if __name__ == '__main__':
     app.run(debug=True)

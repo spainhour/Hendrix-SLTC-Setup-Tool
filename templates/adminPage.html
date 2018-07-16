@@ -1,26 +1,12 @@
 <html>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
   <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <div id="header">
       <h1>Submitted Outlines</h1>
     </div>
   </head>
   <body>
-    <figure>
-      <div id="info">
-        <span>Name: </span><span id="infoFirst"></span>
-        <span id="infoLast"></span><br />
-        <span>Phone: </span><span id="infoPhone"></span></br>
-        <span>Email: </span><span id="infoEmail"></span></br>
-        <span>Event: </span><span id="infoEventOf"></span></br>
-        <span>Date of: </span><span id="infoDateOf"></span></br>
-        <span>Start time: </span><span id="infoStartTime"></span></br>
-        <span>End time: </span><span id="infoEndTime"></span></br>
-        <span>Room: </span><span id="infoRoom"></span></br>
-        <span>Comments: </span><span id="infoComments"></span></br>
-      </div>
-    </figure>
-    </div>
     <button class="show_hide" id="edit" onclick="show_hide()">Edit</button>
     <div id="container">
       <div id="toolBox" class="slidingDiv">
@@ -56,16 +42,51 @@
             <td>{{ user[5] }}</td>
             <td>{{ user[0] }} {{ user[1] }}</td>
             <td>{{ user[8] }}</td>
-            <td><input id="button" type="submit" name="submit" value="info" onclick="displayInfo('{{user[0]}}', '{{user[1]}}', '{{user[2]}}', '{{user[3]}}', '{{user[4]}}', '{{user[5]}}', '{{user[6]}}', '{{user[7]}}', '{{user[8]}}', '{{user[9]}}'"> </td>
+            <td><input id="button" type="button" name="submit" value="info" onclick="displayInfo('{{user[0]}}', '{{user[1]}}', '{{user[2]}}', '{{user[3]}}', '{{user[4]}}', '{{user[5]}}', '{{user[6]}}', '{{user[7]}}', '{{user[8]}}', '{{user[9]}}')"/></td>
+            <td><input id="button_show_outline" type="button" name="submit" value="outline" onclick="show_outline()"/></td>
           </tr>
           {% endfor %}
           </div>
         </table>
       </div>
     </div>
+    <figure>
+      <div id="info">
+        <span>Name: </span><span id="infoFirst"></span>
+        <span id="infoLast"></span><br />
+        <span>Phone: </span><span id="infoPhone"></span></br>
+        <span>Email: </span><span id="infoEmail"></span></br>
+        <span>Event: </span><span id="infoEventName"></span></br>
+        <span>Date of: </span><span id="infoDateOf"></span></br>
+        <span>Start time: </span><span id="infoStartTime"></span></br>
+        <span>End time: </span><span id="infoEndTime"></span></br>
+        <span>Room: </span><span id="infoRoom"></span></br>
+        <span>Comments: </span><span id="infoComments"></span></br>
+      </div>
+    </figure>
   </body>
   <script src="{{ url_for('static', filename='admin.js') }}"></script>
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script>
+    function show_outline() {
+      alert("Still under development.")
+    }
+  </script>
+  <script>
+    function displayInfo(firstname, lastname, phone, email, event_name, date_of, start_time, end_time, room, comments) {
+      console.log("Made it")
+      $('#infoFirst').html(firstname)
+      $('#infoLast').html(lastname)
+      $('#infoPhone').html(phone)
+      $('#infoEmail').html(email)
+      $('#infoEventName').html(event_name)
+      $('#infoDateOf').html(date_of)
+      $('#infoStartTime').html(start_time)
+      $('#infoEndTime').html(end_time)
+      $('#infoRoom').html(room)
+      $('#infoComments').html(comments)
+      $('#info').show()
+    }
+  </script>
   <script>
     function show_hide() {
       var z = document.getElementById("edit");
@@ -77,22 +98,6 @@
         x.style.display = "none";
         z.innerHTML = "Edit";
       }
-    }
-  </script>
-  <script>
-    function displayInfo(firstname, lastname, phone, email, event_name, date_of, start_time, end_time, room, comments) {
-      console.log("Made it")
-    	$('#infoFirst').html(firstname)
-    	$('#infoLast').html(lastname)
-    	$('#infoPhone').html(phone)
-    	$('#infoEmail').html(email)
-    	$('#infoEventName').html(event_name)
-    	$('#infoDateOf').html(date_of)
-    	$('#infoStartTime').html(start_time)
-    	$('#infoEndTime').html(end_time)
-    	$('#infoRoom').html(room)
-    	$('#infoComments').html(comments)
-    	$('#info').show()
     }
   </script>
 </html>

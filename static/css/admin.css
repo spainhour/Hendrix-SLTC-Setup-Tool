@@ -6,7 +6,7 @@
 }
 
 #info {
-  display: hide;
+  display: none;
 }
 
 #header_div {
@@ -40,6 +40,7 @@
   border-style:solid;
   border-color:black;
   flex-grow: 1;
+  overflow: scroll;
 }
 
 #space {
@@ -53,4 +54,31 @@
 
 #select_category {
   align-self: center;
+}
+
+thead.header tr {
+  width: 100%;
+}
+
+thead.header th {
+	background: #FF8300;
+  color: white;
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-top: 1px solid;
+	padding: 4px 3px;
+}
+
+div.canvas {
+	clear: both;
+	border: 1px solid;
+	height: 285px;
+	overflow-y: auto;
+	width: 100%
+}
+
+
+div.canvas table {
+	float: left;
+	width: 100%;
 }

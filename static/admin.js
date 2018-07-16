@@ -1,10 +1,3 @@
-$(document).ready(function(){
-  $('#info').hide();
-  $('.hide-button').on('click', () => {
-    $('#info').show();
- })
-}
-
 function displayInfo(firstname, lastname, phone, email, event_name, date_of, start_time, end_time, room, comments) {
   console.log("Made it")
   $('#infoFirst').html(firstname)
