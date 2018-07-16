@@ -21,13 +21,13 @@
           <option>Select furniture</option>
         </select>
         <br />
-        <div class="objects" draggable="true" ondragstart="dragIt(event)"></div>
+        <div id="test_object" class="objects" draggable="true" ondragstart="dragStart(event)"></div>
       </div>
       <div id="space">
       </div>
-      <div id="canvas" class="grid-container" ondrop="dropIt(event)" ondragover="allowDrop(event)" >
+      <div id="canvas" class="grid-container" ondrop="drop(event)" ondragover="allowDrop(event)" >
       </div>
     </div>
-    <script type="text/javascript" src="mainPage.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='mainPage.js') }}"></script>
   </body>
 </html>
