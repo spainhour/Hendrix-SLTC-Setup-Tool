@@ -15,9 +15,9 @@
       <input class=ibn type="tel" name="phone" placeholder="Phone number" required="required" />
       <input class=ibn type="email" name="email" placeholder="Email" required="required" /> <br />
       <input class=ib type="text" name="event" placeholder="Name of event" required="required" /> <br />
-      Date of event: <br />
+      <span title="the month, day, and year of your event">Date of event</span> <br />
       <input class=ib type="date" name="date" required="required" /> <br />
-      Start time/End time: <br />
+      <span title="the time the setup needs to be ready">Setup time/</span><span title="the time the setup needs to be torn down">Teardown time</span> <br />
       <input class=ibn type="time" name="start_time" placebolder="Start time" required="required" />
       <input class=ibn type="time" name="end_time" placeholder="End time"  required="required" /> <br />
       <select class=ib name="rooms" required="required">
@@ -46,7 +46,7 @@
       <h3>Admin login</h3>
       <form>
         <input id="password" type="password" />
-        <input id="adminSubmit" type="submit" value="Submit" />
+        <input id="adminSubmit" type="submit" value="Submit" onclick="validate()"/>
       </form>
     </div>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>

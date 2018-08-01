@@ -1,12 +1,8 @@
-var id;
-function allowDrop(event) {
-  event.preventDefault();
-}
-
-function dragStart(event) {
-  id=event.target.id;
-}
-
-function drop(event) {
-  event.target.append(document.getElementById(id));
-}
+$("#adminSubmit").click(function () {
+    if ($('#password').val() == "HendrixWarriors") {
+        window.location.href="admin";
+        return false;
+    } else {
+      alert("Invalid password")
+    }
+});
