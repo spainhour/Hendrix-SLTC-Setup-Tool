@@ -3,11 +3,12 @@
   <head>
     <div id="header">
       <h1>Create your outline of {{ room }} for {{ event }}.</h1>
+      <h2></h2>
     </div>
   </head>
   <body>
     <div id="containment">
-      <div id="toolBox">
+      <div id="toolBox" ondragleave="replaceElement()">
         <h2 class="select">Select a category</h2>
         <select class="select" id="select_category">
           <option>Select a category</option>
@@ -16,13 +17,9 @@
           <option value="other">Other</option>
         </select>
         <hr />
-        <h2 class="select">Select furniture</h2>
-        <select id="select_furniture">
-          <option>Select furniture</option>
-        </select>
-        <br />
-        <hr />
-        <div id="block" class="element">8 foot brown</div>
+        <div id="brown" class="element">8 foot brown</div> <br /> <br /> <br />
+        <div id="grey" class="element">6 foot grey</div> <br /> <br /> <br />
+        <div id="round" class="element">Round</div> <br /> <br />
       </div>
       <div id="space">
       </div>
