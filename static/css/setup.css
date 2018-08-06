@@ -1,4 +1,4 @@
-#brown {
+.brown {
   position: absolute;
   text-overflow: ellipsis;
   width: 100px;
@@ -8,7 +8,7 @@
   text-align: center;
 }
 
-#grey {
+.grey {
   position: absolute;
   text-overflow: ellipsis;
   width: 80px;
@@ -18,7 +18,7 @@
   text-align: center;
 }
 
-#round {
+.round {
   text-align: center;
   text-overflow: ellipsis;
   position: absolute;
@@ -59,7 +59,7 @@
 
 #containment {
   display: flex;
-  position: relative;
+  position: absolute;
 }
 
 #toolBox {
@@ -68,6 +68,16 @@
   border-style:solid;
   border-color:black;
   padding:2;
+}
+
+#tips {
+  height:500;
+  width:1000;
+  border-width:2px;
+  border-style:solid;
+  border-color:black;
+  flex-grow: 1;
+  margin: 10px;
 }
 
 #space {
