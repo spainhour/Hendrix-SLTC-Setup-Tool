@@ -31,6 +31,16 @@
   border: 2px solid rgba(0,0,0,0.5);
 }
 
+.staging {
+  text-align: center;
+  text-overflow: ellipsis;
+  position: absolute;
+  border: 2px solid rgba(0,0,0,0.5);
+  width: 70px;
+  height: 90px;
+  line-height: 90px;
+}
+
 .draggable {
   position: absolute;
   width: 90px;
@@ -41,7 +51,7 @@
 }
 
 #dropzone {
-  height:500;
+  height:750;
   width:1000;
   border-width:2px;
   border-style:solid;

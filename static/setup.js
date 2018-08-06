@@ -2,16 +2,17 @@ $(document).ready(function() {
   $('.brown').draggable({containment: '#dropzone', cursor: 'pointer', helper: 'clone', revert: 'invalid'});
   $('.grey').draggable({containment: '#dropzone', cursor: 'pointer', helper: 'clone', revert: 'invalid'});
   $('.round').draggable({containment: '#dropzone', cursor: 'pointer', helper: 'clone', revert: 'invalid'});
+  $('.staging').draggable({containment: '#dropzone', cursor: 'pointer', helper: 'clone', revert: 'invalid'});
 });
 
 $("#dropzone").droppable({
-  accept: ".brown, .grey, .round",
+  accept: ".brown, .grey, .round, .staging",
   drop: function(event,ui){
       var new_signature = $(ui.helper).clone();
       new_signature.draggable({containment: '#dropzone', cursor: 'pointer', revert: 'invalid'});
       $(this).append(new_signature);
       $(ui.helper).remove();
-      $('.brown, .grey, .round').click(function() {
+      $('.brown, .grey, .staging').click(function() {
           rotation += 45;
           $(this).rotate(rotation);
       });
