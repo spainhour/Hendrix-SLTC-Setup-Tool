@@ -8,9 +8,9 @@ $(document).ready(function() {
 $("#dropzone").droppable({
   accept: ".brown, .grey, .round, .staging",
   drop: function(event,ui){
-      var new_signature = $(ui.helper).clone();
-      new_signature.draggable({containment: '#dropzone', cursor: 'pointer', revert: 'invalid'});
-      $(this).append(new_signature);
+      var clone = $(ui.helper).clone();
+      clone.draggable({containment: '#dropzone', cursor: 'pointer', revert: 'invalid'});
+      $(this).append(clone);
       $(ui.helper).remove();
       $('.brown, .grey, .staging').click(function() {
           rotation += 45;
