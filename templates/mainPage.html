@@ -43,10 +43,8 @@
     </form>
     <hr />
     <div id="adminLogin">
-      <h3>Admin login</h3>
-      <form>
-        <input id="password" type="password" />
-        <input id="adminSubmit" type="submit" value="Submit" onclick="validate()"/>
+      <form action = "{{ url_for('adminPage') }}">
+        <input id="adminSubmit" type="submit" value="Continue as Admin" />
       </form>
     </div>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
