@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.brown').draggable({containment: '#dropzone', cursor: 'pointer', helper: 'clone', revert: 'invalid'});
+  $(".brown").draggable({containment: '#dropzone', cursor: 'pointer', helper: 'clone', revert: 'invalid'});
   $('.grey').draggable({containment: '#dropzone', cursor: 'pointer', helper: 'clone', revert: 'invalid'});
   $('.round').draggable({containment: '#dropzone', cursor: 'pointer', helper: 'clone', revert: 'invalid'});
   $('.staging').draggable({containment: '#dropzone', cursor: 'pointer', helper: 'clone', revert: 'invalid'});
