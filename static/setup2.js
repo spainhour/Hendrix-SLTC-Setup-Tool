@@ -23,6 +23,8 @@ $(document).ready(function() {
         node.type = "round";
       } else if (ui.helper.hasClass("staging")) {
         node.type = "staging";
+      } else {
+        return;
       }
       dropped.push(node);
       renderDropped(dropped);
@@ -42,14 +44,16 @@ $(document).ready(function() {
         html = '<div style="text-align: center;text-overflow: ellipsis;position: absolute;border-radius: 50%;background: rgba(255,255,255,0.66);behavior: url(PIE.htc);width: 80px;height: 80px;line-height: 80px;border: 2px solid rgba(0,0,0,0.5);">Round</div>';
       } else if (node.type == "staging") {
         html = '<div style="text-align: center;text-overflow: ellipsis;position: absolute;border: 2px solid rgba(0,0,0,0.5);width: 70px;height: 90px;line-height: 90px;">Staging</div>';
-      } else {
-        return;
       }
       var dom = $(html).css({
         "positon": "absolute",
         "top": node.position.top,
         "left":  node.position.left
-      }).draggable();
+      }).draggable({
+        stop: function(event, ui) {
+          
+        }
+      });
       dropzone.append(dom);
     }
   }
