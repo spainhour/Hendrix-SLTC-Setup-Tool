@@ -51,9 +51,15 @@ $(document).ready(function() {
         "left":  node.position.left
       }).draggable({
         stop: function(event, ui) {
-          
+          var id = ui.helper.attr("id");
+          for (var i in dropped) {
+            if (dropped[i].id == id) {
+              dropped[i].position.top = ui.position.top;
+              dropped[i].position.left = ui.position.left;
+            }
+          }
         }
-      });
+      }).attr("id", node.id);
       dropzone.append(dom);
     }
   }
