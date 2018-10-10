@@ -1,14 +1,13 @@
 <html>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/setup.css') }}">
   <head>
-    <div id="header">
+    <div class="container" id="header">
       <h1>Create your outline of {{ room }} for {{ event }}.</h1>
-      <h2></h2>
     </div>
   </head>
   <body>
-    <div id="containment">
-      <div id="toolBox">
+    <div class="row flex" id="containment">
+      <div class="container"id="toolBox">
         <h2 class="select">Select a category</h2>
         <select class="select" id="select_category">
           <option>Select a category</option>
@@ -16,16 +15,16 @@
           <option values="chairs">Chairs</option>
           <option value="other">Other</option>
         </select>
+        <button id="deleteContentsButton" type="button">Start Over</button>
         <hr />
         <div class="brown">8 foot brown</div> <br /> <br /> <br />
         <div class="grey">8 foot grey</div> <br /> <br /> <br />
         <div class="round">Round</div> <br /> <br /> <br /> <br /> <br />
         <div class="staging">Staging</div> <br /> <br />
       </div>
-      <div id="space">
-      </div>
-      <div id="dropzone"></div>
+      <div class="container" id="dropzone"></div>
     </div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='setup2.js') }}"></script>

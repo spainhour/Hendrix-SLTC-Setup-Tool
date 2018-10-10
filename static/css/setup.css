@@ -1,3 +1,7 @@
+.flex {
+  display: flex;
+}
+
 .brown {
   position: absolute;
   text-overflow: ellipsis;
@@ -51,47 +55,32 @@
 }
 
 #dropzone {
-  height:1000;
-  width:1000;
+  height:auto;
+  width:80%;
   border-width:2px;
   border-style:solid;
   border-color:black;
-  flex-grow: 1;
-  margin: 10px;
 }
 
 #header {
   background-position: center;
   font-stretch: expanded;
-  height: 125px;
+  height: 100;
   text-align: center;
 }
 
 #containment {
-  display: flex;
   position: absolute;
+  width:100%;
+  height:100%;
 }
 
 #toolBox {
-  width: 250;
+  width: auto;
+  height: auto;
   border-width:2px;
   border-style:solid;
   border-color:black;
-  padding:2;
-}
-
-#tips {
-  height:500;
-  width:1000;
-  border-width:2px;
-  border-style:solid;
-  border-color:black;
-  flex-grow: 1;
-  margin: 10px;
-}
-
-#space {
-  width:4;
 }
 
 .select {

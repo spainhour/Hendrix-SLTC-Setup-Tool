@@ -2,17 +2,17 @@ $(document).ready(function() {
   var dropped = [];
   var dropzone = $("#dropzone");
   var toolbox = $("#toolBox");
-  $(".brown").draggable({helper: "clone"});
-  $(".grey").draggable({helper: "clone"});
-  $(".round").draggable({helper: "clone"});
-  $(".staging").draggable({helper: "clone"});
+  $(".brown").draggable({helper: "clone", invalid: "revert"});
+  $(".grey").draggable({helper: "clone", invalid: "revert"});
+  $(".round").draggable({helper: "clone", invalid: "revert"});
+  $(".staging").draggable({helper: "clone", invalid: "revert"});
   dropzone.droppable({
     drop: function(event, ui) {
       var node = {
         /* Give each node a unique identifier*/
         id: (new Date).getTime(),
         /* Keep track of the position for each node so we can place each node correctly*/
-        position: ui.position
+        position: ui.helper.position()
       };
       /* Assigns a type to each node. The type is the type of furniture, must be updated for each new funiture added */
       if(ui.helper.hasClass("brown")) {
@@ -64,3 +64,22 @@ $(document).ready(function() {
     }
   }
 });
+
+document.getElementById("#deleteContentsButton").addEventListener("click", deleteContents(), false);
+function deleteContents() {
+  confirm = confirm("Start over on your outline?");
+  if (confirm) {
+    dropzone.empty();
+  } else {
+    return;
+  }
+}
+$('.brown, .grey, .staging').click(function() {
+    rotation += 45;
+    $(this).rotate(rotation);
+});
+var rotation = 0;
+jQuery.fn.rotate = function(degrees) {
+    $(this).css({'transform' : 'rotate('+ degrees +'deg)'});
+    return $(this);
+};
