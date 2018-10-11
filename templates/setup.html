@@ -8,7 +8,7 @@
   <body>
     <div class="row flex" id="containment">
       <div class="container"id="toolBox">
-        <h2 class="select">Select a category</h2>
+        <h2 class="select">Drag symbols to the canvas</h2>
         <select class="select" id="select_category">
           <option>Select a category</option>
           <option value="tables">Tables</option>
@@ -17,10 +17,18 @@
         </select>
         <button id="deleteContentsButton" type="button">Start Over</button>
         <hr />
-        <div class="brown">8 foot brown</div> <br /> <br /> <br />
-        <div class="grey">8 foot grey</div> <br /> <br /> <br />
-        <div class="round">Round</div> <br /> <br /> <br /> <br /> <br />
-        <div class="staging">Staging</div> <br /> <br />
+          <div class="col-sm" id="objects">
+            <div id="tables_div">
+              <div class="brown">8 foot brown</div> <br />
+              <div class="grey">8 foot grey</div> <br />
+              <div class="round">Round</div> <br />
+            </div>
+            <div id="chairs_div">
+            </div>
+            <div id="other_div">
+              <div class="staging">Staging</div> <br />
+            </div>
+          </div>
       </div>
       <div class="container" id="dropzone"></div>
     </div>

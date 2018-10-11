@@ -3,7 +3,7 @@
 }
 
 .brown {
-  position: absolute;
+  position: relative;
   text-overflow: ellipsis;
   width: 100px;
   background: rgba(255,255,255,0.66);
@@ -13,7 +13,7 @@
 }
 
 .grey {
-  position: absolute;
+  position: relative;
   text-overflow: ellipsis;
   width: 100px;
   background: rgba(255,255,255,0.66);
@@ -25,7 +25,7 @@
 .round {
   text-align: center;
   text-overflow: ellipsis;
-  position: absolute;
+  position: relative;
   border-radius: 50%;
   background: rgba(255,255,255,0.66);
   behavior: url(PIE.htc);
@@ -38,7 +38,7 @@
 .staging {
   text-align: center;
   text-overflow: ellipsis;
-  position: absolute;
+  position: relative;
   border: 2px solid rgba(0,0,0,0.5);
   width: 70px;
   height: 90px;
@@ -55,8 +55,9 @@
 }
 
 #dropzone {
+  overflow: scroll;
   height:auto;
-  width:80%;
+  width:100%;
   border-width:2px;
   border-style:solid;
   border-color:black;
@@ -70,12 +71,14 @@
 }
 
 #containment {
-  position: absolute;
+  overflow:scroll;
+  position: relative;
   width:100%;
   height:100%;
 }
 
 #toolBox {
+  overflow: scroll;
   width: auto;
   height: auto;
   border-width:2px;

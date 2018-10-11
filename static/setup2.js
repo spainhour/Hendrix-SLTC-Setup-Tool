@@ -59,13 +59,53 @@ $(document).ready(function() {
             }
           }
         }
-      }).attr("id", node.id);
+      }).attr("id", node.id).click(function() {
+          rotation += 45;
+          $(this).rotate(rotation);
+      });
       dropzone.append(dom);
     }
   }
+  var select = document.getElementById("select_category");
+  select.addEventListener("change", function() {
+    var value = select.value;
+    if (value == "tables") {
+      displayTables();
+    } else if (value == "chairs") {
+      displayChairs();
+    } else if (value =="other") {
+      displayOther();
+    }
+  });
+  document.getElementById("deleteContentsButton").addEventListener("click", function(){
+    conf = confirm("Start over on your outline?");
+    if (conf) {
+      dropped = [];
+      dropzone.empty();
+    } else {
+      return;
+    }
+  });
+  function displayTables() {
+    $("#tables_div").show();
+    $("#chairs_div").hide();
+    $("#other_div").hide();
+  }
+
+  function displayChairs() {
+    $("#chairs_div").show();
+    $("#tables_div").hide();
+    $("#other_div").hide();
+  }
+
+  function displayOther() {
+    $("#other_div").show();
+    $("#chairs_div").hide();
+    $("#tables_div").hide();
+  }
 });
 
-document.getElementById("#deleteContentsButton").addEventListener("click", deleteContents(), false);
+
 function deleteContents() {
   confirm = confirm("Start over on your outline?");
   if (confirm) {
@@ -74,10 +114,7 @@ function deleteContents() {
     return;
   }
 }
-$('.brown, .grey, .staging').click(function() {
-    rotation += 45;
-    $(this).rotate(rotation);
-});
+
 var rotation = 0;
 jQuery.fn.rotate = function(degrees) {
     $(this).css({'transform' : 'rotate('+ degrees +'deg)'});
