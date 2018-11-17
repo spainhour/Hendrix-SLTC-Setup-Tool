@@ -1,5 +1,4 @@
 function displayInfo(firstname, lastname, phone, email, event_name, date_of, start_time, end_time, room, comments) {
-  console.log("Made it")
   $('#infoFirst').html(firstname)
   $('#infoLast').html(lastname)
   $('#infoPhone').html(phone)

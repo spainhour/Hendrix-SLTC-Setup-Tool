@@ -2,25 +2,20 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
   <head>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
     <div id="header">
       <h1>Submitted Outlines</h1>
     </div>
   </head>
   <body>
-    <button class="show_hide" id="edit" onclick="show_hide()">Edit</button>
-    <div id="container">
-      <div id="toolBox" class="slidingDiv">
-        <h2 class="select">Select a category</h2>
-        <select class="select">
-          <option>Select a category</option>
-          <option value="tables">Tables</option>
-          <option values="chairs">Chairs</option>
-          <option value="other">Other</option>
-        </select>
-        <hr />
-        <h2 class="select">Select furniture</h2>
-      </div>
-      <div id="space">
+      <div class="container">
+        <h2>Schedule Calendar</h2>
+        <div id="fullCal"></div>
       </div>
       <div id="canvas">
         <table>
@@ -69,26 +64,31 @@
       </div>
     </div>
   </body>
-  <script src="{{ url_for('static', filename='admin.js') }}"></script>
+
+  <script>
+  $(document).ready(function(){
+    var createdEvents = []
+    var calendar = $('#fullCal').fullCalendar({
+      events: [
+        {
+          title: "Career Fair 2018",
+          start: "2018-11-16",
+          end: "2018-11-16"
+        }
+      ]
+    })
+  });
+  </script>
+
+  <script>
+  $(document).ready(function(){
+    $('#fullCal').fullCalendar({
+    })
+  });
+  </script>
   <script>
     function show_outline() {
       alert("Still under development.")
-    }
-  </script>
-  <script>
-    function displayInfo(firstname, lastname, phone, email, event_name, date_of, start_time, end_time, room, comments) {
-      console.log("Made it")
-      $('#infoFirst').html(firstname)
-      $('#infoLast').html(lastname)
-      $('#infoPhone').html(phone)
-      $('#infoEmail').html(email)
-      $('#infoEventName').html(event_name)
-      $('#infoDateOf').html(date_of)
-      $('#infoStartTime').html(start_time)
-      $('#infoEndTime').html(end_time)
-      $('#infoRoom').html(room)
-      $('#infoComments').html(comments)
-      $('#info').show()
     }
   </script>
   <script>

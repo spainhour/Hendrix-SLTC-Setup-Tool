@@ -1,14 +1,17 @@
 <html>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/setup.css') }}">
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='setup2.js') }}"></script>
     <div class="container" id="header">
       <h1>Create your outline of {{ room }} for {{ event }}.</h1>
     </div>
   </head>
   <body>
-    <div class="row flex" id="containment">
+    <div class="row" id="containment">
       <div class="container"id="toolBox">
-        <h2 class="select">Drag symbols to the canvas</h2>
+        <h2 class="select">Drag to the canvas</h2>
         <select class="select" id="select_category">
           <option>Select a category</option>
           <option value="tables">Tables</option>
@@ -19,22 +22,41 @@
         <hr />
           <div class="col-sm" id="objects">
             <div id="tables_div">
-              <div class="brown">8 foot brown</div> <br />
-              <div class="grey">8 foot grey</div> <br />
-              <div class="round">Round</div> <br />
+              <ul>
+                <li>
+                  <div class="brown">8 foot brown</div> <br />
+                </li>
+                <li>
+                  <div class="grey">8 foot grey</div> <br />
+                </li>
+                <li>
+                  <div class="round">Round</div> <br />
+                </li>
+              </ul>
             </div>
             <div id="chairs_div">
             </div>
             <div id="other_div">
-              <div class="staging">Staging</div> <br />
+              <ul>
+                <li>
+                  <div class="staging">Staging </div> Skirting? <input type="checkbox" id="skirting_checkbox"/> <br />
+                </li>
+              </ul>
             </div>
           </div>
       </div>
       <div class="container" id="dropzone"></div>
+      <div class="container" id="tipBar"><h2 align="center">Summary</h2>
+        <input type="button" id="updateSummaryButton" value="Update Summary"/>
+        <div ><h3>Tables <br /></h3></div>
+          <div id="summaryTables"></div>
+        <div><h3>Chairs <br /></h3></div>
+          <div id="summaryChairs"></div>
+        <div><h3>Other information <br /></h3></div>
+          <div id="summaryOther"></div>
+      </div>
     </div>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='setup2.js') }}"></script>
+
   </body>
 </html>

@@ -1,7 +1,16 @@
+var summaryDictionary = {
+  "brown": 0,
+  "grey": 0,
+  "round": 0,
+  "staging": 0
+};
+
 $(document).ready(function() {
   var dropped = [];
   var dropzone = $("#dropzone");
   var toolbox = $("#toolBox");
+
+  /* Make our original html furniture elements draggable */
   $(".brown").draggable({helper: "clone", invalid: "revert"});
   $(".grey").draggable({helper: "clone", invalid: "revert"});
   $(".round").draggable({helper: "clone", invalid: "revert"});
@@ -9,7 +18,7 @@ $(document).ready(function() {
   dropzone.droppable({
     drop: function(event, ui) {
       var node = {
-        /* Give each node a unique identifier*/
+        /* Give each node a unique identifier */
         id: (new Date).getTime(),
         /* Keep track of the position for each node so we can place each node correctly*/
         position: ui.helper.position()
@@ -17,16 +26,21 @@ $(document).ready(function() {
       /* Assigns a type to each node. The type is the type of furniture, must be updated for each new funiture added */
       if(ui.helper.hasClass("brown")) {
         node.type = "brown";
-      } else if(ui.helper.hasClass("grey")) {
+        summaryDictionary["brown"] += 1;
+      } else if (ui.helper.hasClass("grey")) {
         node.type = "grey";
-      } else if(ui.helper.hasClass("round")) {
+        summaryDictionary["grey"] += 1;
+      } else if (ui.helper.hasClass("round")) {
         node.type = "round";
+        summaryDictionary["round"] += 1;
       } else if (ui.helper.hasClass("staging")) {
         node.type = "staging";
+        summaryDictionary["staging"] += 1;
       } else {
         return;
       }
       dropped.push(node);
+      console.log(summaryDictionary);
       renderDropped(dropped);
     }
   });
@@ -56,6 +70,7 @@ $(document).ready(function() {
             if (dropped[i].id == id) {
               dropped[i].position.top = ui.position.top;
               dropped[i].position.left = ui.position.left;
+
             }
           }
         }
@@ -73,10 +88,40 @@ $(document).ready(function() {
       displayTables();
     } else if (value == "chairs") {
       displayChairs();
-    } else if (value =="other") {
+    } else if (value == "other") {
       displayOther();
     }
   });
+
+  document.getElementById("updateSummaryButton").addEventListener("click", updateSummary, false);
+
+  function updateSummary() {
+    var brownCount = 0;
+    var greyCount = 0;
+    var roundCount = 0;
+    var stagingCount = 0;
+    brownCount = summaryDictionary["brown"];
+    greyCount = summaryDictionary["grey"];
+    roundCount = summaryDictionary["round"];
+    stagingCount = summaryDictionary["staging"];
+    console.log("Brown tables: " + brownCount);
+    console.log("Grey tables: " + greyCount);
+    console.log("Round tables: " + roundCount);
+    console.log("Staging: " + stagingCount);
+    if (brownCount != 0) {
+      document.getElementById("summaryTables").innerHTML = "<h4>Brown tables: " + brownCount + "</h4>";
+    }
+    if (greyCount != 0) {
+      document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Grey tables: " + greyCount + "</h4>";
+    }
+    if (roundCount != 0) {
+      document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Grey tables: " + roundCount + "</h4>";
+    }
+    if (stagingCount != 0) {
+      document.getElementById("summaryOther").innerHTML = "<h4>Staging: " + stagingCount + "</h4>";
+    }
+  }
+
   document.getElementById("deleteContentsButton").addEventListener("click", function(){
     conf = confirm("Start over on your outline?");
     if (conf) {
@@ -86,6 +131,7 @@ $(document).ready(function() {
       return;
     }
   });
+
   function displayTables() {
     $("#tables_div").show();
     $("#chairs_div").hide();
@@ -105,7 +151,6 @@ $(document).ready(function() {
   }
 });
 
-
 function deleteContents() {
   confirm = confirm("Start over on your outline?");
   if (confirm) {
@@ -114,7 +159,6 @@ function deleteContents() {
     return;
   }
 }
-
 var rotation = 0;
 jQuery.fn.rotate = function(degrees) {
     $(this).css({'transform' : 'rotate('+ degrees +'deg)'});
