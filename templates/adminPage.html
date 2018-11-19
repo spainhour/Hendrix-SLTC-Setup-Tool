@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
     <div id="header">
-      <h1>Submitted Outlines</h1>
+      <h1>Event Schedule</h1>
     </div>
   </head>
   <body>
@@ -67,25 +67,23 @@
 
   <script>
   $(document).ready(function(){
-    var createdEvents = []
+    var createdEvents = {};
+    var eventNameandTime = {};
+    {% for user in users %}
+    createdEvents["{{ user[0] }}" + "{{ user[1] }}"] = {title: "{{ user[4] }}", start: "{{ user[5] }}", end: "{{ user[5] }}"}
+    {% endfor %}
+    console.log(Object.values(createdEvents));
+    for (i = 0; i < Object.keys(createdEvents); i++) {
+      eventNameandTime.push(createdEvents[i]);
+    }
+
     var calendar = $('#fullCal').fullCalendar({
-      events: [
-        {
-          title: "Career Fair 2018",
-          start: "2018-11-16",
-          end: "2018-11-16"
-        }
-      ]
+      events: Object.values(createdEvents)
     })
+
   });
   </script>
 
-  <script>
-  $(document).ready(function(){
-    $('#fullCal').fullCalendar({
-    })
-  });
-  </script>
   <script>
     function show_outline() {
       alert("Still under development.")
