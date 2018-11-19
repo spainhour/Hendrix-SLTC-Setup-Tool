@@ -115,7 +115,7 @@ $(document).ready(function() {
       document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Grey tables: " + greyCount + "</h4>";
     }
     if (roundCount != 0) {
-      document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Grey tables: " + roundCount + "</h4>";
+      document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Round tables: " + roundCount + "</h4>";
     }
     if (stagingCount != 0) {
       document.getElementById("summaryOther").innerHTML = "<h4>Staging: " + stagingCount + "</h4>";
