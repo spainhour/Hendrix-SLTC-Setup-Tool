@@ -81,17 +81,6 @@ $(document).ready(function() {
       dropzone.append(dom);
     }
   }
-  var select = document.getElementById("select_category");
-  select.addEventListener("change", function() {
-    var value = select.value;
-    if (value == "tables") {
-      displayTables();
-    } else if (value == "chairs") {
-      displayChairs();
-    } else if (value == "other") {
-      displayOther();
-    }
-  });
 
   document.getElementById("updateSummaryButton").addEventListener("click", updateSummary, false);
 
@@ -108,24 +97,22 @@ $(document).ready(function() {
     console.log("Grey tables: " + greyCount);
     console.log("Round tables: " + roundCount);
     console.log("Staging: " + stagingCount);
-    if (brownCount != 0) {
       document.getElementById("summaryTables").innerHTML = "<h4>Brown tables: " + brownCount + "</h4>";
-    }
-    if (greyCount != 0) {
       document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Grey tables: " + greyCount + "</h4>";
-    }
-    if (roundCount != 0) {
       document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Round tables: " + roundCount + "</h4>";
-    }
-    if (stagingCount != 0) {
       document.getElementById("summaryOther").innerHTML = "<h4>Staging: " + stagingCount + "</h4>";
-    }
   }
 
   document.getElementById("deleteContentsButton").addEventListener("click", function(){
     conf = confirm("Start over on your outline?");
     if (conf) {
       dropped = [];
+      summaryDictionary = {
+        "brown": 0,
+        "grey": 0,
+        "round": 0,
+        "staging": 0
+      };
       dropzone.empty();
     } else {
       return;
