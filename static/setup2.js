@@ -81,7 +81,17 @@ $(document).ready(function() {
       dropzone.append(dom);
     }
   }
-
+  var select = document.getElementById("select_category");
+  select.addEventListener("change", function() {
+    var value = select.value;
+    if (value == "tables") {
+      displayTables();
+    } else if (value == "chairs") {
+      displayChairs();
+    } else if (value == "other") {
+      displayOther();
+    }
+  });
   document.getElementById("updateSummaryButton").addEventListener("click", updateSummary, false);
 
   function updateSummary() {

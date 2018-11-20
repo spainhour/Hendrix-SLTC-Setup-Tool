@@ -1,5 +1,6 @@
 <html>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <head>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
@@ -8,9 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-    <div id="header">
-      <h1>Event Schedule</h1>
-    </div>
   </head>
   <body>
       <div class="container">
@@ -18,88 +16,32 @@
         <div id="fullCal"></div>
       </div>
       <div id="canvas">
-        <table>
-          <thead class="header">
-            <div id="header_div">
-            <tr>
-              <th>Event</th>
-              <th>Date</th>
-              <th>Name</th>
-              <th>Room</th>
-              <th></th>
-            </tr>
-            </div>
-          </thead>
-          <div id="user_info_div">
-          {% for user in users %}
-          <tr id="user_info">
-            <td>{{ user[4] }}</td>
-            <td>{{ user[5] }}</td>
-            <td>{{ user[0] }} {{ user[1] }}</td>
-            <td>{{ user[8] }}</td>
-            <td><input id="button" type="button" name="submit" value="info" onclick="displayInfo('{{user[0]}}', '{{user[1]}}', '{{user[2]}}', '{{user[3]}}', '{{user[4]}}', '{{user[5]}}', '{{user[6]}}', '{{user[7]}}', '{{user[8]}}', '{{user[9]}}')"/></td>
-            <td><input id="button_show_outline" type="button" name="submit" value="outline" onclick="show_outline()"/></td>
-          </tr>
-          {% endfor %}
-          </div>
-        </table>
-      </div>
-      <div id="space">
-      </div>
-      <div id="informationDiv">
-        <figure>
-          <div id="info">
-            <span>Name: </span><span id="infoFirst"></span>
-            <span id="infoLast"></span><br />
-            <span>Phone: </span><span id="infoPhone"></span></br>
-            <span>Email: </span><span id="infoEmail"></span></br>
-            <span>Event: </span><span id="infoEventName"></span></br>
-            <span>Date of: </span><span id="infoDateOf"></span></br>
-            <span>Start time: </span><span id="infoStartTime"></span></br>
-            <span>End time: </span><span id="infoEndTime"></span></br>
-            <span>Room: </span><span id="infoRoom"></span></br>
-            <span>Comments: </span><span id="infoComments"></span></br>
-          </div>
-        </figure>
       </div>
     </div>
   </body>
-
   <script>
   $(document).ready(function(){
     var createdEvents = {};
     var eventNameandTime = {};
     {% for user in users %}
-    createdEvents["{{ user[0] }}" + "{{ user[1] }}"] = {title: "{{ user[4] }}", start: "{{ user[5] }}", end: "{{ user[5] }}"}
+    createdEvents["{{ user[0] }}" + "{{ user[1] }}"] = {title: "{{ user[4] }}", room: "{{ user[8] }}", start: "{{ user[5] }}", end: "{{ user[5] }}", firstName: "{{ user[0] }}", lastName: "{{ user[1]}}", phone: "{{ user[2] }}", email: "{{ user[3] }}", startTime: "{{ user[6] }}", endTime: "{{ user[7] }}", comments: "{{ user[9] }}"}
     {% endfor %}
     console.log(Object.values(createdEvents));
     for (i = 0; i < Object.keys(createdEvents); i++) {
       eventNameandTime.push(createdEvents[i]);
     }
-
     var calendar = $('#fullCal').fullCalendar({
-      events: Object.values(createdEvents)
-    })
-
+    events: Object.values(createdEvents),
+    eventClick:  function(event, jsEvent, view) {
+        // display event information as an alert
+        alert(event.title + "\n" + "Name: " + event.firstName + " " + event.lastName + "\n" + "Start time: " + event.startTime + "\n" + "End time: " + event.endTime + "\n" + "Room: " + event.room + "\n");
+    }
+    });
   });
   </script>
-
   <script>
     function show_outline() {
       alert("Still under development.")
-    }
-  </script>
-  <script>
-    function show_hide() {
-      var z = document.getElementById("edit");
-      var x = document.getElementById("toolBox");
-      if (x.style.display == "none") {
-        x.style.display = "block";
-        z.innerHTML = "Save";
-      } else {
-        x.style.display = "none";
-        z.innerHTML = "Edit";
-      }
     }
   </script>
 </html>
