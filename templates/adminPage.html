@@ -24,17 +24,20 @@
     var createdEvents = {};
     var eventNameandTime = {};
     {% for user in users %}
-    createdEvents["{{ user[0] }}" + "{{ user[1] }}"] = {title: "{{ user[4] }}", room: "{{ user[8] }}", start: "{{ user[5] }}", end: "{{ user[5] }}", firstName: "{{ user[0] }}", lastName: "{{ user[1]}}", phone: "{{ user[2] }}", email: "{{ user[3] }}", startTime: "{{ user[6] }}", endTime: "{{ user[7] }}", comments: "{{ user[9] }}"}
+    createdEvents["{{ user[0] }}" + "{{ user[1] }}"] = {title: "{{ user[4] }}".replace('&#39', '\x27'), room: "{{ user[8] }}", start: "{{ user[5] }}", end: "{{ user[5] }}", firstName: "{{ user[0] }}", lastName: "{{ user[1]}}", phone: "{{ user[2] }}", email: "{{ user[3] }}", startTime: "{{ user[6] }}", endTime: "{{ user[7] }}", comments: "{{ user[9] }}"}
     {% endfor %}
     console.log(Object.values(createdEvents));
     for (i = 0; i < Object.keys(createdEvents); i++) {
       eventNameandTime.push(createdEvents[i]);
     }
+
     var calendar = $('#fullCal').fullCalendar({
     events: Object.values(createdEvents),
     eventClick:  function(event, jsEvent, view) {
         // display event information as an alert
-        alert(event.title + "\n" + "Name: " + event.firstName + " " + event.lastName + "\n" + "Start time: " + event.startTime + "\n" + "End time: " + event.endTime + "\n" + "Room: " + event.room + "\n");
+        console.log(event.title);
+        console.log(addslashes(event.title));
+        alert(addslashes(event.title) + "\n" + "Name: " + event.firstName + " " + event.lastName + "\n" + "Start time: " + event.startTime + "\n" + "End time: " + event.endTime + "\n" + "Room: " + event.room + "\n" + "Comments: " + event.comments);
     }
     });
   });
@@ -44,4 +47,14 @@
       alert("Still under development.")
     }
   </script>
+  <script>
+  function addslashes(str) {
+    str = str.replace(/\\/g, '\\\\');
+    str = str.replace(/\'/g, '\\\'');
+    str = str.replace(/\"/g, '\\"');
+    str = str.replace(/\0/g, '\\0');
+    return str;
+  }
+  </script>
+
 </html>

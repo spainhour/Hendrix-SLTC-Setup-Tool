@@ -40,7 +40,6 @@ $(document).ready(function() {
         return;
       }
       dropped.push(node);
-      console.log(summaryDictionary);
       renderDropped(dropped);
     }
   });
@@ -51,7 +50,7 @@ $(document).ready(function() {
       var node = dropped[d];
       /*Set the html to match the display name for each node, must be updated each time new furniture objects are added*/
       if (node.type == "brown") {
-        html = '<div style="position: absolute;text-overflow: ellipsis;width: 100px;background: rgba(255,255,255,0.66);border: 2px  solid rgba(0,0,0,0.5);border-radius: 4px; padding: 8px;text-align: center;">8 foot brown</div>';
+        html = '<div style="position: absolute;text-overflow: ellipsis;width: 10%;background: rgba(255,255,255,0.66);border: 2px  solid rgba(0,0,0,0.5);border-radius: 4px; padding: 8px;text-align: center;">8 foot brown</div>';
       } else if (node.type == "grey") {
         html = '<div style="position: absolute;text-overflow: ellipsis;width: 100px;background: rgba(255,255,255,0.66);border: 2px  solid rgba(0,0,0,0.5);border-radius: 4px; padding: 8px;text-align: center;">8 foot grey</div>';
       } else if (node.type == "round") {
@@ -70,7 +69,6 @@ $(document).ready(function() {
             if (dropped[i].id == id) {
               dropped[i].position.top = ui.position.top;
               dropped[i].position.left = ui.position.left;
-
             }
           }
         }
@@ -103,14 +101,25 @@ $(document).ready(function() {
     greyCount = summaryDictionary["grey"];
     roundCount = summaryDictionary["round"];
     stagingCount = summaryDictionary["staging"];
-    console.log("Brown tables: " + brownCount);
-    console.log("Grey tables: " + greyCount);
-    console.log("Round tables: " + roundCount);
-    console.log("Staging: " + stagingCount);
-      document.getElementById("summaryTables").innerHTML = "<h4>Brown tables: " + brownCount + "</h4>";
-      document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Grey tables: " + greyCount + "</h4>";
-      document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Round tables: " + roundCount + "</h4>";
-      document.getElementById("summaryOther").innerHTML = "<h4>Staging: " + stagingCount + "</h4>";
+
+    document.getElementById("summaryTables").innerHTML = "<h4>Brown tables: " + brownCount + "</h4>";
+    document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Grey tables: " + greyCount + "</h4>";
+    document.getElementById("summaryTables").innerHTML = document.getElementById("summaryTables").innerHTML + "<h4>Round tables: " + roundCount + "</h4>";
+    document.getElementById("summaryOther").innerHTML = "<h4>Staging: " + stagingCount + "</h4>";
+    document.getElementById("summaryOther").innerHTML = document.getElementById("summaryOther").innerHTML + "<h4>Skirting: " + getSkirtingCheckboxValue() + "</h4>";
+  }
+
+  function getSkirtingCheckboxValue() {
+    var yesOrNo = "";
+    var skirting = document.getElementById("skirting_checkbox").checked;
+    console.log(skirting);
+    if (skirting) {
+      yesOrNo = "yes";
+    } else {
+      yesOrNo = "no";
+    }
+    console.log("here: " + yesOrNo);
+    return yesOrNo;
   }
 
   document.getElementById("deleteContentsButton").addEventListener("click", function(){
