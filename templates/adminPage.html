@@ -15,31 +15,45 @@
         <h2>Schedule Calendar</h2>
         <div id="fullCal"></div>
       </div>
-      <div id="canvas">
-      </div>
+      <image id="canvas"></image>
     </div>
   </body>
+  <script src="/path/to/html2canvas.min.js"></script>
   <script>
   $(document).ready(function(){
     var createdEvents = {};
     var eventNameandTime = {};
     {% for user in users %}
-    createdEvents["{{ user[0] }}" + "{{ user[1] }}"] = {title: "{{ user[4] }}".replace('&#39', '\x27'), room: "{{ user[8] }}", start: "{{ user[5] }}", end: "{{ user[5] }}", firstName: "{{ user[0] }}", lastName: "{{ user[1]}}", phone: "{{ user[2] }}", email: "{{ user[3] }}", startTime: "{{ user[6] }}", endTime: "{{ user[7] }}", comments: "{{ user[9] }}"}
+    createdEvents["{{ user[0] }}" + "{{ user[1] }}"] = {title: "{{ user[4] }}".replace('&#39;', '\x27').replace(/"/g, '\\"'), room: "{{ user[8] }}", start: "{{ user[5] }}", end: "{{ user[5] }}", firstName: "{{ user[0] }}", lastName: "{{ user[1]}}", phone: "{{ user[2] }}", email: "{{ user[3] }}", startTime: "{{ user[6] }}", endTime: "{{ user[7] }}", comments: "{{ user[9] }}", outline: "{{ user[10] }}"}
     {% endfor %}
-    console.log(Object.values(createdEvents));
     for (i = 0; i < Object.keys(createdEvents); i++) {
       eventNameandTime.push(createdEvents[i]);
     }
-
     var calendar = $('#fullCal').fullCalendar({
     events: Object.values(createdEvents),
     eventClick:  function(event, jsEvent, view) {
-        // display event information as an alert
-        console.log(event.title);
-        console.log(addslashes(event.title));
-        alert(addslashes(event.title) + "\n" + "Name: " + event.firstName + " " + event.lastName + "\n" + "Start time: " + event.startTime + "\n" + "End time: " + event.endTime + "\n" + "Room: " + event.room + "\n" + "Comments: " + event.comments);
+        // display event information
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", event.outline);
+        xhr.responseType = "arraybuffer";
+        xhr.onload = function( e ) {
+          // Obtain a blob: URL for the image data.
+          var arrayBufferView = new Uint8Array( this.response );
+          var blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
+          var urlCreator = window.URL || window.webkitURL;
+          var imageUrl = urlCreator.createObjectURL( blob );
+          var img = document.querySelector( "#canvas" );
+          img.src = imageUrl;
+        };
+        xhr.send();
+        confirm(addslashes(event.title).replace(/"/g, '\\"') + "\n" + "Name: " + event.firstName + " " + event.lastName + "\n" + "Start time: " + event.startTime + "\n" + "End time: " + event.endTime + "\n" + "Room: " + event.room + "\n" + "Comments: " + event.comments);
     }
     });
+    function response(e) {
+      var urlCreator = window.URL || window.webkitURL;
+      var imageUrl = urlCreator.createObjectURL(this.response);
+      document.querySelector("#canvas").src = imageUrl;
+    }
   });
   </script>
   <script>

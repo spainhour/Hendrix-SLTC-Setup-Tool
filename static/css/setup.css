@@ -11,7 +11,7 @@
 .grey {
   position: relative;
   text-overflow: ellipsis;
-  width: 100px;
+  width: 79%;
   background: rgba(255,255,255,0.66);
   border: 2px  solid rgba(0,0,0,0.5);
   border-radius: 4px; padding: 8px;
@@ -25,9 +25,9 @@
   border-radius: 50%;
   background: rgba(255,255,255,0.66);
   behavior: url(PIE.htc);
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
+  width: 120px;
+  height: 120px;
+  line-height: 60px;
   border: 2px solid rgba(0,0,0,0.5);
 }
 
@@ -36,9 +36,9 @@
   text-overflow: ellipsis;
   position: relative;
   border: 2px solid rgba(0,0,0,0.5);
-  width: 70px;
-  height: 90px;
-  line-height: 90px;
+  width: 100px;
+  height: 120px;
+  line-height: 60px;
 }
 .staging-with-skirt {
   text-align: center;
@@ -88,7 +88,7 @@ ul {
   overflow: scroll;
   position: relative;
   width:auto;
-  height:80%;
+  height:70%;
 }
 
 #tipBar {

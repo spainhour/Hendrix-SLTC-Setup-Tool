@@ -6,7 +6,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='setup2.js') }}"></script>
     <div class="container" id="header">
-      <h1>Create your outline of {{ room }} for {{ event }}.</h1>
+      <h1>Setup for {{ event }} in {{ room }}.</h1>
     </div>
   </head>
   <body>
@@ -55,10 +55,12 @@
           <div id="summaryChairs"></div>
         <div><h3>Other information <br /></h3></div>
           <div id="summaryOther"></div>
-        <input type="button" id="finishButton" value="Finish" position="bottom" />
+        <input type="button" id="finishButton" value="Finish" position="bottom"/>
       </div>
     </div>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
   </body>
+  <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 </html>

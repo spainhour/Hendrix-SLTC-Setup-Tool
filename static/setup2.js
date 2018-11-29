@@ -52,11 +52,11 @@ $(document).ready(function() {
       if (node.type == "brown") {
         html = '<div style="position: absolute;text-overflow: ellipsis;width: 10%;background: rgba(255,255,255,0.66);border: 2px  solid rgba(0,0,0,0.5);border-radius: 4px; padding: 8px;text-align: center;">8 foot brown</div>';
       } else if (node.type == "grey") {
-        html = '<div style="position: absolute;text-overflow: ellipsis;width: 100px;background: rgba(255,255,255,0.66);border: 2px  solid rgba(0,0,0,0.5);border-radius: 4px; padding: 8px;text-align: center;">8 foot grey</div>';
+        html = '<div style="position: absolute;text-overflow: ellipsis;width: 10%;background: rgba(255,255,255,0.66);border: 2px  solid rgba(0,0,0,0.5);border-radius: 4px; padding: 8px;text-align: center;">8 foot grey</div>';
       } else if (node.type == "round") {
-        html = '<div style="text-align: center;text-overflow: ellipsis;position: absolute;border-radius: 50%;background: rgba(255,255,255,0.66);behavior: url(PIE.htc);width: 80px;height: 80px;line-height: 80px;border: 2px solid rgba(0,0,0,0.5);">Round</div>';
+        html = '<div style="text-align: center;text-overflow: ellipsis;position: absolute;border-radius: 50%;background: rgba(255,255,255,0.66);behavior: url(PIE.htc);width: 120px;height: 120px;line-height: 60px;border: 2px solid rgba(0,0,0,0.5);">Round</div>';
       } else if (node.type == "staging") {
-        html = '<div style="text-align: center;text-overflow: ellipsis;position: absolute;border: 2px solid rgba(0,0,0,0.5);width: 70px;height: 90px;line-height: 90px;">Staging</div>';
+        html = '<div style="text-align: center;text-overflow: ellipsis;position: absolute;border: 2px solid rgba(0,0,0,0.5);width: 100px;height: 120px;line-height: 60px;">Staging</div>';
       }
       var dom = $(html).css({
         "positon": "absolute",
@@ -91,6 +91,38 @@ $(document).ready(function() {
     }
   });
   document.getElementById("updateSummaryButton").addEventListener("click", updateSummary, false);
+  document.getElementById("finishButton").addEventListener("click", finishSetup, false);
+
+  function finishSetup() {
+    if (confirm("Finish your setup?")) {
+      updateSummary()
+      saveToDB()
+      saveImage()
+    } else {
+      return
+    }
+    xalert("Your setup has been saved.");
+  }
+
+  function saveImage() {
+    var element = document.getElementById("canvas");
+    html2canvas(document.body).then(function(canvas) {
+      canvas.toBlob(function(blob) {
+        saveAs(blob, "setup.png");
+        saveToDB(blob);
+        console.log(blob);
+      });
+      console.log("finished");
+    });
+  }
+
+  function saveToDB(blob) {
+    var db = openDatabase('users', '1.0', 'user information', '2 * 1024 * 1024');
+    var image = blob
+    db.transaction(function (tx) {
+      tx.executeSql('UPDATE users SET outline=blob WHERE firstname={{ firstname }} and lastname={{ lastname }}');
+    });
+  }
 
   function updateSummary() {
     var brownCount = 0;
@@ -156,6 +188,8 @@ $(document).ready(function() {
     $("#tables_div").hide();
   }
 });
+
+
 
 function deleteContents() {
   confirm = confirm("Start over on your outline?");

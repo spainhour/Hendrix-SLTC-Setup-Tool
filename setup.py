@@ -44,19 +44,21 @@ def new_user():
         comments = request.form['comments']
         con = sqlite3.connect('users.db')
         cur = con.cursor()
-        cur.execute("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?,?)", (str(firstname), str(lastname), str(phone), str(email), str(event), str(date), str(start), str(end), str(room), str(comments)))
+        cur.execute("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?,?,?)", (str(firstname), str(lastname), str(phone), str(email), str(event), str(date), str(start), str(end), str(room), str(comments), ""))
         con.commit()
         con.close()
-        return setupPage(room, event)
+        return setupPage(room, event, firstname, lastname)
 
 @app.route('/setup')
-def setupPage(setupRoom, event):
+def setupPage(setupRoom, event, firstname, lastname):
     room = setupRoom
+    firstname = firstname
+    lastname = lastname
     if room == "Burrow":
         room = "The Burrow"
     if room == "East Lobby":
         room = "The East Lobby"
-    return render_template("setup.html", room=room, event=event)
+    return render_template("setup.html", firstname=firstname, lastname=lastname, room=room, event=event)
 
 if __name__ == '__main__':
     app.run(debug=True)
